@@ -88,7 +88,7 @@ jQuery(document).ready(function() {
 
   $(window).resize(function(){
     prova.height(prova.width()*0.75);
-    box.height($('#im').width()*0.75);
+    box.height($('#im').width()*0.45);
   });
 
 
