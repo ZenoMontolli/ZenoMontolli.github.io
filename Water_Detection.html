@@ -43,6 +43,10 @@
     }
 
 
+    function velo(){
+
+    }
+
     function changevideo(){
       var x = document.getElementById("selectimage");
       while (x.length > 0) {x.remove(x.length-1);}
@@ -118,6 +122,7 @@
   <body onload="inizialization()">
 
     <div id="top" class="item animated fadeIn">
+      <div id="fix">
       <div id="titolo"><h1 style="font-family: serif; font-size: 3em;">Water Detection</h1><div style="position:absolute;right:20px;top:10px;"><img src="logouni.png" width="300"></div></div>
       <div id="indice"><a id="freccia_indice"></a>&nbsp;&nbsp;&nbsp;&nbsp;INDICE
       <div id="Menu"><br><a href="#Intro" style="text-decoration:none;color:black;">INTRODUZIONE</a><br>
@@ -126,18 +131,27 @@
                     <a href="#archi_rete" style="text-decoration:none;color:black">ARCHITETTURA RETE</a><br>
                     <a href="#addestramento" style="text-decoration:none;color:black">TRAINING</a><br>
                     <a href="#Testing" style="text-decoration:none;color:black">TESTING</a><br><br>
-    </div></div>
+    </div></div></div>
     </div>
 
     <div id="Intro" style="position:relative;top :20px;color:white;padding-left:5%;padding-right:5%;">
       <h1>Introduzione</h1>
       <p>
-        L'automatizzazione di droni &egrave; un obbiettivo sempre pi&ugrave; diffuso. I droni possono facilitare il compito a utenti che ne facciano uso, esperti e non, in tantissimi settori, migliorandone le qulit&agrave; lavorative. Un ambito in cui l'automatizzazione pu&ograve; essere sicuramente utile e vantaggiosa &egrave; il monitoraggio delle acque. Attualmente tale monitoraggio tramite sensori statici o tramite prelievi manuali da parte di utenti, operazioni che possono risultare difficili e a volte anche poco accurate a causa delle correnti acquatiche che spostano i fattori di interesse.<br>
-        Un'alternativa valida a questa metodologia non del tutto affidabile consiste nell'utilizzo di droni acquatici per il campionamento dell'acqua, obbiettivo che si  intende raggiungere con il progetto INTCATCH 2020 che prevede la realizzazione di AVS (Autonomoud Veichle Systems). Nella <a href="#immagine_boat" style="color:orange;text-decoration:none">Fig. 1</a> &egrave; raffigurato un prototipo di AVS. Gli AVS montano sensori per il rilevamento di parametri dell'acqua come Temperatura, Ph e Ossigeno disciolto. Attualmente il movimento del drone pu&ograve; essere controllato tramite radiocomando o autonomo per mezzo di una particolare app con cui si pu&ograve; decidere il percorso da effettuare. Il problema principale nello spostamento automatico &egrave; il rilevamento degli ostacoli e il loro superamento tramite l'utilizzo di videocamere. Nell'ambito acquatico sono numerosi i fattori che ne aumentano le difficolt&agrave; di stabilit&agrave; quali riflessi, onde e luminosit&agrave; variabili.
+        <h2>INTRO 1</h2>
+        L'automatizzazione di droni &egrave; un obbiettivo sempre pi&ugrave; diffuso. I droni possono facilitare il compito a utenti che ne facciano uso, esperti e non, in tantissimi settori, migliorandone le qulit&agrave; lavorative. Un ambito in cui l'automatizzazione pu&ograve; essere sicuramente utile e vantaggiosa &egrave; il monitoraggio delle acque. Attualmente tale monitoraggio avviene tramite sensori statici o tramite prelievi manuali da parte di utenti, operazioni che possono risultare difficili e a volte anche poco accurate a causa delle correnti acquatiche che spostano i fattori di interesse.<br>
+        Un'alternativa valida a questa metodologia non del tutto affidabile consiste nell'utilizzo di droni acquatici per il campionamento dell'acqua, obbiettivo che si intende raggiungere con il progetto INTCATCH 2020 che prevede la realizzazione di AVS (Autonomoud Veichle Systems).Gli AVS, che verranno implementati entro gennaio 2020, avranno lo scopo di rendere il monitoraggio delle acque un'operazione efficiente e sostenibile in quanto andrebbero a colmare le difficoltà portate del campionamento manuale. Gli AVS montano sensori per il rilevamento di parametri dell'acqua come Temperatura, Ph e Ossigeno disciolto. Attualmente il movimento del drone pu&ograve; essere controllato tramite radiocomando o autonomo per mezzo di una particolare app con cui si pu&ograve; decidere il percorso da effettuare. Durante gli spostamenti automatici dei droni esiste un problema non di poco conto: il rilevamento di ostacoli. Ciò significa che il drone non è in grado di riconoscere oggetti presenti nel suo percorso rendendo così lo spostamento autonomo di poco rilievo e di poco utilizzo.<br>
+        In questa pagina presentiamo uno studio effettuato dall'universit&agrave; di Verona, per il progetto INTCATCH, sul rilavemento di ostacoli in superficie. Il rilevamento avviene tramite videocamere montate sopra ai droni. Il processo quindi elabora i frame, provenienti dai video in tempo reale, tramite reti neurali effettuando una classificazione binaria dei pixel. Una rete neurale &egrave; un ottimo strumento per classificare immagini. Nel nostro caso vengono classificati i pixel in due classi: acqua e non-acqua. Una volta classificati, il drone potr&agrave; muoversi di conseguenza evitando cos&igrave; ostacoli presenti nel suo percorso.
+      </p><p>
+          Una rete neurale prima di essere caricata sul drone deve essere addestrata al suo compito. Nel nostro caso per addestrare la rete neurale bisogna darle in input un dataset appositamente creato. Nel dataset sono presenti immagini dell'ambiente considerato ed ad esse vengono associate le relative maschere. Una mask ha il compito di etichettare la classe di appartenenza dei pixel, tramite una notazione posizionale, dell'immagine ad essa associata. La rete processando un'immagine alla volta potra confrontare il risultato ottenuto con la maschera ed aggiustare i vari pesi di ogni neurone. Nel progetto dell'università ho portato il mio contributo tramite la creazione di una parte del dataset e piccoli cambiamenti nel tool di segmentazione per riuscire a riconoscere diversi tipi di ostacoli che si possono incontrare e per allargare l'ambiente di training del drone. Infine ho trainato la rete.
+        </p><p>
+          Il progetto ha ottenuto ottimi risultati arrivando ad una precisione di classificazione superiore al 90%. Il metodo quindi risulta una buona alternativa ad algoritmi supervisionati e non. Il problema che si immette tramite questo tipo di approccio è la velocità di elaborazione dei video: per questo motivo verranno proposte più architetture ognuna con i suoi pro e contro.      <p>
+        <h2>INTRO 2</h2>
+        L'automatizzazione di droni &egrave; un obbiettivo sempre pi&ugrave; diffuso. I droni possono facilitare il compito a utenti che ne facciano uso, esperti e non, in tantissimi settori, migliorandone le qulit&agrave; lavorative. Un ambito in cui l'automatizzazione pu&ograve; essere sicuramente utile e vantaggiosa &egrave; il monitoraggio delle acque. Attualmente tale monitoraggio avviene tramite sensori statici o tramite prelievi manuali da parte di utenti, operazioni che possono risultare difficili e a volte anche poco accurate a causa delle correnti acquatiche che spostano i fattori di interesse.<br>
+        Un'alternativa valida a questa metodologia non del tutto affidabile consiste nell'utilizzo di droni acquatici per il campionamento dell'acqua, obbiettivo che si  intende raggiungere con il progetto INTCATCH 2020 che prevede la realizzazione di AVS (Autonomoud Veichle Systems).Gli AVS, che verranno implementati entro gennaio 2020, avranno lo scopo di rendere il monitoraggio delle acque un'operazione efficiente e sostenibile in quanto andrebbero a colmare le difficoltà portate del campionamento manuale.Nella <a href="#immagine_boat" style="color:orange;text-decoration:none">Fig. 1</a> &egrave; raffigurato un prototipo di AVS. Gli AVS montano sensori per il rilevamento di parametri dell'acqua come Temperatura, Ph e Ossigeno disciolto. Attualmente il movimento del drone pu&ograve; essere controllato tramite radiocomando o autonomo per mezzo di una particolare app con cui si pu&ograve; decidere il percorso da effettuare. Il problema principale che affronteremo in questa ricerca è la rilevazione degli ostacoli. Attualmente i droni non sono in grado di riconoscere ostacoli presenti nel loro percorso rendendo così di poca utilità il loro movimento autonomo. nello spostamento automatico &egrave; il rilevamento degli ostacoli e il loro superamento tramite l'utilizzo di videocamere. Nell'ambito acquatico sono numerosi i fattori che ne aumentano le difficolt&agrave; di stabilit&agrave; quali riflessi, onde e luminosit&agrave; variabili.
         <p></p>
         In questa pagina presentiamo uno studio effettuato dall'universit&agrave; di Verona, per il progetto INTCATCH, sul rilavemento di ostacoli in superficie.
       </p><p>
-        Concentreremo l'attenzione sul processo di riconoscimento della linea di galleggiamento e di ostacoli tramite l'utilizzo di reti neurali. Una rete neurale &egrave; un ottimo strumento per classificare immagini. Nel nostro caso vengono classificati i pixel di ogni singolo frame, provenienti da videocamere montate sopra i droni, in due classi: acqua e non-acqua. Una volta classificati, il drone potr&agrave; muoversi di conseguenza evitando cos&igrave; ostacoli presenti nel suo percorso.
+        Concentreremo l'attenzione sul processo di riconoscimento della linea di galleggiamento e di ostacoli tramite l'utilizzo di reti neurali.NUOVO. Questo tipo di ricerca andrà a migliorare il processo di spostamento automatico riconoscendo ostacoli tramite videocamere montate.NUOVO. Una rete neurale &egrave; un ottimo strumento per classificare immagini. Nel nostro caso vengono classificati i pixel di ogni singolo frame, provenienti da videocamere montate sopra i droni, in due classi: acqua e non-acqua. Una volta classificati, il drone potr&agrave; muoversi di conseguenza evitando cos&igrave; ostacoli presenti nel suo percorso.
       </p><p>
         Una rete neurale prima di essere caricata sul drone deve essere addestrata a svolgere il suo compito per poi essere testata su immagini provenienti da un dataset diverso da quello di training al fine di valutarne il funzionamento. Per l'addestramento della rete neurale vengono utilizzate immagini provenienti da video appositamente registrati. Una volta caricata sul drone dovrà essere in grado di lavorare con i frame provenienti dalle videocamere per riconscere dal vivo la presenza di ostacoli e della linea di costa.
       </p>
@@ -146,10 +160,13 @@
         set di immagini ognuna associata ad una maschera appositamente creata in cui ad ogni posizione di pixel viene associata una particolare classe di appartenenza
         -->
     </div>
-    <div id="immagine_boat" style="position:relative;width:50%;left:25%;top:20px;" class="img_didasc" >
-      <img src="img_boat.jpg"/ style="width:100%">
-      <p id="didasc">Fig. 1: Immagine AVS utilizzato dal progetto Intcatch.</p>
+    <div style="position:relative;width:50%;left:25%;top:20px;" class="img_didasc">
+    <video id="video" width="100%" autoplay loop muted >
+    <source src="VID_20191121_105937.mp4" type="video/mp4" >Il video non è supportato
+    </video>
+    <p id="didasc"> Video 1: Piccolo spezzone del movimento del drone</p>
     </div>
+
     <div style="position:relative; top :30px;" >
       <div id="tool"> <h1>Tool di segmentazione</h1>
         <p>
@@ -169,7 +186,9 @@
       </div>
       <div id="prova" >
         <div id="immagine_tool" class="img_didasc">
-          <img style="position:relative;width:100%;" src="tool.png"/>
+          <video id="video" width="100%" autoplay loop muted >
+          <source src="make_img.mp4" type="video/mp4" >Il video non è supportato
+          </video>
           <p id="didasc">Fig. 2: Esempio di schermata Tool di segmentazione.</p>
         </div>
         <div id="legenda"> <b>LEGENDA COLORI</b>:
@@ -187,6 +206,7 @@
           </dl>
         </div>
       </div>
+
     </div>
     <div class="box" id ="dataset">
       <h1>Dataset</h1>
