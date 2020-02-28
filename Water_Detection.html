@@ -176,7 +176,7 @@
     </div>
     <div style="position:relative;width:50%;left:25%;top:20px;" class="img_didasc">
     <video id="video" width="100%" autoplay loop muted >
-    <source src="immagini/VID_20191121_105937.mp4" type="video/mp4" >Il video non è supportato
+    <source src="VID_20191121_105937.mp4" type="video/mp4" >Il video non è supportato
     </video>
     <p id="didasc"> Vid. 1: Presentazione del movimento in acqua del drone</p>
     </div>
@@ -206,7 +206,7 @@
       <div id="prova" >
         <div id="immagine_tool" class="img_didasc">
           <video id="video" width="100%" autoplay loop muted >
-          <source src="immagini/make_img.mp4" type="video/mp4" >Il video non è supportato
+          <source src="make_img.mp4" type="video/mp4" >Il video non è supportato
           </video>
           <p id="didasc">Vid. 2: Esempio di creazione di un'immagine per il dataset tramite il tool di segmentazione.</p>
         </div>
@@ -271,7 +271,7 @@
       Half-Conv BN 160&#x2715;160 contiene la met&agrave; dei livelli convoluzionali della rete Full BN. Riducendo i livelli convoluzionali a un singolo livello per codifica/decodifica, &egrave; possibile ottenere un calcolo pi&ugrave; rapido in termini di FPS a scapito della precisione di rilevazione. Inoltre, togliendo la BN, e sempre a svantaggio di una miglior precisione, si pu&ograve; ulteriormente migliorare la velocit&agrave; di calcolo. Ci riferiamo alle due versioni della rete senza BN come Full 160&#x2715;160 e Half-Conv 160&#x2715;160 , rispettivamente. Le reti Full mobile-net-v1-layer 160&#x2715;160 Full mobile-net -v2-layer 160&#x2715;160 derivano da MobileNet. MobileNet &egrave; un tipo di rete dove gli strati convoluzionali tradizionali dal livello 1 al 4 sono sostituiti da convoluzioni depthwise separable (DSC). Questo tipo di rete &egrave; apposito per dispositivi mobili perch&egrave; rende l'architettura molto pi&ugrave; leggera e portabile aumentandone la velocit&agrave; di calcolo.
     </p><br><br></div>
     <div id="immagine_archi" style="position:absolute;left:53%;width:40%;top:20%;" class="img_didasc" >
-        <img src="immagini/architettura.jpg"/ style="width:100%">
+        <img src="architettura.jpg"/ style="width:100%">
         <p id="didasc">Fig. 1: Architettura U-net Full BN 160 x 160.</p>
       </div>
     </div>
@@ -301,7 +301,7 @@
           Il training della rete &egrave; stato fatto per 100 epoche. Per evitare l'overfitting &egrave; stato usata l'interruzione anticipata con patient 20 basata sulla loss function rispetto al validation set.</p><br><br>
         </div>
         <div id="immagine_loss" style="position:absolute;width:40%;left:53%;top:20%;" class="img_didasc" >
-          <img src="immagini/img_loss.jpg"/ style="width:100%">
+          <img src="img_loss.jpg"/ style="width:100%">
           <p id="didasc">Fig. 2: Confronto delle varie funzioni loss tramite metrica Dice/F1.</p>
         </div>
   </div>
